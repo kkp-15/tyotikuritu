@@ -18,20 +18,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
-        input, button {
+        input {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
             font-size: 16px;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
         }
     </style>
 </head>
@@ -39,12 +30,10 @@
     <div class="container">
         <h1>貯蓄率計算</h1>
         <label for="income">収入（円）:</label>
-        <input type="number" id="income" placeholder="例: 300000">
+        <input type="number" id="income" placeholder="例: 300000" oninput="calculate()">
         
         <label for="expenses">支出（円）:</label>
-        <input type="number" id="expenses" placeholder="例: 200000">
-        
-        <button onclick="calculate()">計算</button>
+        <input type="number" id="expenses" placeholder="例: 200000" oninput="calculate()">
         
         <h2>結果</h2>
         <p>貯蓄額: <span id="savings">-</span> 円</p>
@@ -56,7 +45,8 @@
             let expenses = parseFloat(document.getElementById("expenses").value);
             
             if (isNaN(income) || isNaN(expenses) || income < 0 || expenses < 0) {
-                alert("正しい数値を入力してください");
+                document.getElementById("savings").textContent = "-";
+                document.getElementById("savingsRate").textContent = "-";
                 return;
             }
 
