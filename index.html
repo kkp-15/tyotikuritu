@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貯蓄率計算</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>貯蓄率計算</h1>
+        <label for="income">収入（円）:</label>
+        <input type="number" id="income" placeholder="例: 300000">
+        
+        <label for="expenses">支出（円）:</label>
+        <input type="number" id="expenses" placeholder="例: 200000">
+        
+        <button onclick="calculate()">計算</button>
+        
+        <h2>結果</h2>
+        <p>貯蓄額: <span id="savings">-</span> 円</p>
+        <p>貯蓄率: <span id="savingsRate">-</span> %</p>
+    </div>
+    <script>
+        function calculate() {
+            let income = parseFloat(document.getElementById("income").value);
+            let expenses = parseFloat(document.getElementById("expenses").value);
+            
+            if (isNaN(income) || isNaN(expenses) || income < 0 || expenses < 0) {
+                alert("正しい数値を入力してください");
+                return;
+            }
+
+            let savings = income - expenses;
+            let savingsRate = (savings / income) * 100;
+
+            document.getElementById("savings").textContent = savings.toLocaleString();
+            document.getElementById("savingsRate").textContent = savingsRate.toFixed(2);
+        }
+    </script>
+</body>
+</html>
